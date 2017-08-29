@@ -1,5 +1,4 @@
-$primary: #3f51b5;
-$secondary: #009688;
+$primary: #ff5722;
 
 @import "fonts";
 
@@ -41,7 +40,7 @@ body::after{
     width: 100vw;
     height: 100vh;
     animation: o-anim 15s infinite cubic-bezier(1,0,0,1);
-    background-image: linear-gradient(to top, transparentize(#000, .85) 50%, transparent 50%);
+    background-image: linear-gradient(to top, transparentize(#000, .725) 50%, transparent 50%);
     right:0;
     bottom:0;
     pointer-events: none;
@@ -219,10 +218,10 @@ main{
 }
 
 a.anchor{
-    color: lighten($secondary, 15%);
+    color: lighten($primary, 15%);
     transition: color .35s cubic-bezier(1,0,0,1);
     &:hover, &:focus{
-        color: $secondary
+        color: $primary
     }
 }
 
