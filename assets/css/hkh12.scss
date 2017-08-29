@@ -1,0 +1,240 @@
+$primary: #3f51b5;
+$secondary: #009688;
+
+@import "fonts";
+
+*{
+    user-select: none;
+}
+
+ul.contact{
+    &, li{
+        overflow: visible !important;
+    }
+    li{
+        display: table-cell;
+        width: 0.01%;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        border: none !important;
+    }
+    box-shadow: none !important;
+}
+
+#big_{
+    height: calc(100vh - 60px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0
+}
+
+.fa{
+    font-weight: normal !important;
+}
+
+body::after{
+    position: fixed;
+    z-index: 1;
+    content: '';
+    width: 100vw;
+    height: 100vh;
+    animation: o-anim 15s infinite cubic-bezier(1,0,0,1);
+    background-image: linear-gradient(to top, transparentize(#000, .85) 50%, transparent 50%);
+    right:0;
+    bottom:0;
+    pointer-events: none;
+}
+
+@mixin grad-control($b, $d) {
+    background-size: 100% $b;
+    background-position: 50% $d;
+}
+
+@keyframes o-anim {
+    from, to{
+        @include grad-control(100%, 50%);
+    }
+    5%{
+        @include grad-control(100%, 6%);
+    }
+    8%{
+        @include grad-control(200%, -80%);
+    }
+    15%{
+        @include grad-control(200%, 50%);
+    }
+    20%{
+        @include grad-control(200%, 0%);
+    }
+    22%{
+        @include grad-control(100%, 30%);
+    }
+    27%{
+        @include grad-control(100%, 6%);
+    }
+    35%{
+        @include grad-control(200%, -80%);
+    }
+    44%{
+        @include grad-control(200%, 50%);
+    }
+    49%{
+        @include grad-control(200%, 0%);
+    }
+    57%{
+        @include grad-control(100%, 30%);
+    }
+    62%{
+        @include grad-control(100%, 6%);
+    }
+    70%{
+        @include grad-control(200%, -80%);
+    }
+    85%{
+        @include grad-control(200%, 50%);
+    }
+    90%{
+        @include grad-control(200%, 0%);
+    }
+    95%{
+        @include grad-control(100%, 30%);
+    }
+}
+
+body{
+    *{
+        z-index: 2
+    }
+    cursor: default;
+    position: relative;
+    min-height: 100vh;
+    background-image: url('http://cdn.wallpapersafari.com/76/65/Odov0V.png');
+    background-color:  $primary;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 50% 50%;
+    //background-blend-mode: soft-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 60px 6vw;
+    color: #fff;
+}
+
+@mixin lit-shadow( $p, $alpha: .5 ) {
+    $y: #{$p}px;
+    $blur: #{$p*2 + $p/4}px;
+    $spread: #{ -$p / 4 }px;
+    box-shadow: 0 $y $blur $spread rgba(0,0,0, $alpha)
+}
+
+main{
+    padding: 60px 3.7856vw;
+}
+
+.flexible-list{
+    &#my_proj{
+        .flex-li{
+            $line_scale: 1.89 / 1.25;
+            transition: .467s cubic-bezier(1,0,0,1);
+            &:hover{
+                //padding: 40px 25px;
+                line-height: $line_scale * 1.25;
+                padding: #{$line_scale * 25}px 25px;
+            }
+            @function rem( $param ) {
+                @return #{$param * 16}px;
+            }
+            &:not(.contributer){
+                &::after{
+                    position: absolute;
+                    background-color: red;
+                    content: '';
+                    height: rem(1);
+                    z-index: 2;
+                    width: rem(.75);
+                    top: 0;
+                    left: 2.5vw;
+                }
+                &::before{
+                    position: absolute;
+                    content: '';
+                    z-index: 2;
+                    border: {
+                        top: rem(.375) solid red;
+                        left: rem(.375) solid transparent;
+                        right: rem(.375) solid transparent;
+                    };
+                    left: 2.5vw;
+                    top:rem(1)
+                }
+            }
+        }
+    }
+    margin: 15px auto;
+    & > ul{
+        margin: 0;
+        padding: 0;
+        border-radius: 2.5px;
+        overflow: hidden;
+        display: block;
+        background-color: #fff;
+        @include lit-shadow(5, .6);
+        list-style: none;
+        li{
+            &:not(:last-child){
+                border-bottom: 1px solid #ebebeb
+            };
+            .flex-li{
+                position: relative;
+                text-align: left;
+                line-height: 1.25;
+                overflow: hidden;
+                padding: 25px;
+                & > div{
+                    display: table-cell;
+                    vertical-align: middle;
+                }
+                .texts{
+                    width: 100%;
+                    color: #888;
+                    .title{
+                        font-size: 2em;
+                        display: block;
+                        color: #000;
+                        margin: .67rem 0;
+                        .badge{
+                            font-size: 40%;
+                        }
+                    }
+                    a.anchor{
+                        display: block;
+                    }
+                }
+                .explore{
+                    width: 85px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+a.anchor{
+    color: lighten($secondary, 15%);
+    transition: color .35s cubic-bezier(1,0,0,1);
+    &:hover, &:focus{
+        color: $secondary
+    }
+}
+
+hr{
+    border: none;
+    height:1px !important;
+    background-color: currentColor;
+    width:95%;
+    opacity: .65
+}
