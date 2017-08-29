@@ -110,12 +110,7 @@ body{
     cursor: default;
     position: relative;
     min-height: 100vh;
-    background-image: url('http://cdn.wallpapersafari.com/76/65/Odov0V.png');
     background-color:  $primary;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: 50% 50%;
-    //background-blend-mode: soft-light;
     display: flex;
     align-items: center;
     justify-content: center;
