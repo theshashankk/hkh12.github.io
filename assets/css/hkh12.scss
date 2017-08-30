@@ -1,4 +1,4 @@
-$primary: #ff5722;
+$primary: #2196f3;
 
 @import "fonts";
 
@@ -22,11 +22,12 @@ ul.contact{
 }
 
 #big_{
-    height: calc(100vh - 60px);
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0
+    margin: 0;
+    margin-top: -60px;
 }
 
 .fa{
@@ -92,13 +93,13 @@ body::after{
         @include grad-control(200%, -80%);
     }
     85%{
-        @include grad-control(200%, 50%);
-    }
-    90%{
         @include grad-control(200%, 0%);
     }
+    90%{
+        @include grad-control(200%, 100%);
+    }
     95%{
-        @include grad-control(100%, 30%);
+        @include grad-control(550%, 30%);
     }
 }
 
