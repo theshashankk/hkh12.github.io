@@ -17,6 +17,7 @@ body{
 }
 
 section{
+    min-height: calc(100vh - 70px);
     width: 100%;
     padding: 0 20px;
     margin-left: auto;
@@ -54,21 +55,37 @@ small{
 .flex-container{
     display: flex;
     width: 100%;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    @media only screen and (max-width: 768px){
+        flex-wrap: wrap;
+    }
 }
 
 .chip{
     background-color: #fff;
     color: inherit;
     display: block;
-    margin: 10px;
+    // margin: 10px;
+    &:not(:first-of-type):not(:last-of-type){
+        margin: 0 15px;
+        @media only screen and (max-width: 768px){
+            margin: 15px 0
+        }
+    }
+    @media only screen and (min-width: 768px){
+        max-width: 404px;
+        &.mini{
+            max-width: 202px;
+        }
+    }
     box-shadow: 0 2px 3px rgba(#000, .15);
     border-radius: 2.5px;
-    padding: 15px 100px;
+    padding: 15px 25px;
     &.mini{
-        padding: 12px 50px;
+        padding: 12px 24px;
     }
+    width: 100%;
     transition: box-shadow .15s $cubic;
     i{
         display: block;
@@ -83,14 +100,10 @@ small{
         &, i{
             color: #fff
         }
-        &[data-social='github']{
-            background-color: #333
-        }
-        &[data-social='telegram']{
-            background-color: #0088cc
-        }
-        &[data-social='codepen']{
-            background-color: #333/2 + #0088cc/2
+        @each $net, $hex in $social-colors{
+            &[data-social='#{$net}']{
+                background-color: $hex
+            }
         }
     }
 }
@@ -99,8 +112,10 @@ small{
 footer{
     background-color: #fff;
     box-shadow: 0 -2px 3px rgba(#000, .15);
-    padding: 15px 20px;
-    font-size: 80%
+    padding: 0 20px;
+    font-size: 80%;
+    height: 70px;
+    line-height: 70px;
 }
 
 @mixin clear {
@@ -310,9 +325,10 @@ footer{
 }
 
 .loader{
-    height: calc(100vh - 170px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    // height: calc(100vh - 170px);
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    // flex-shrink: 0;
+    padding: 20px 0;
 }
