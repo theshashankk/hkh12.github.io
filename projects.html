@@ -14,7 +14,13 @@
         <div class="sp-100"></div>
         <div class="align-center">
             <h2 class="mono">My Projects</h2>
+            <p muted>
+                All my GitHub repositories are shown below.
+            </p>
             <div class="clear">
+                <div class="loader">
+                    <img src="assets/mds.svg">
+                </div>
                 <div class="repos" id="rep1">
 
                 </div>
@@ -35,19 +41,21 @@
     (function($) {
         'use strict';
         var json = $.getJSON('https://api.github.com/users/hkh12/repos', {}, function (data) {
-            get();
+            $('.loader').hide(0);
+            getRepos();
         })
-        function get() {
+        function getRepos() {
             for (var i = 0; i < json.responseJSON.length; i++) {
                 var repo = json.responseJSON[i],
-                stars = repo.stargazers_count > 0 ? ('<i class="material-icons">star_border</i> ' + repo.stargazers_count) : '&nbsp;',
+                stars = repo.stargazers_count > 0 ? ('<i class="material-icons">star</i> ' + repo.stargazers_count) : '&nbsp;',
                 lang = repo.language !== null ? repo.language : ' ' ;
                 var r = $('<div class="repo"></div>');
                 r
                 .append('<a class="fw-700 mono h6" href="https://github.com/' + repo.full_name +'" target="_blank">' + repo.name +'</a>')
                 .append('<p muted>' + repo.description + '</p>')
                 .append('<div class="language mono" data-language="' + lang + '"></div>')
-                .append('<div class="stars">' + stars + '</div>');
+                .append('<div class="stars">' + stars + '</div>')
+                // .append('<small class="homepage fw-300"><a href="' + repo.homepage + '" target="_blank">Visit homepage</a></small>')
                 r.appendTo($(i%2 == 0 ? '#rep1' : '#rep2'))
             }
         }
