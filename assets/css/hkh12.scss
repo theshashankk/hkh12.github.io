@@ -1,9 +1,11 @@
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+@import "_ripple";
 @import "_data";
 @import "_fonts";
 
 *{
+    outline: none !important;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 }
@@ -116,12 +118,15 @@ footer{
 .repos{
     @include clear;
     width: 100%;
+    float: left;
     @media only screen and (min-width: 768px){
         width: 50%;
+        &:not(:last-of-type){
+            padding-right: 20px;
+        }
     }
-    float: left;
-    &:not(:last-of-type){
-        padding-right: 20px;
+    @media only screen and (max-width: 768px){
+        padding: 0 10px;
     }
 }
 
@@ -131,9 +136,9 @@ footer{
     border-radius: 2.5px;
     padding: 15px;
     transition: box-shadow .15s $cubic;
-    &:not(:last-of-type){
+    // &:not(:last-of-type){
         margin-bottom: 20px;
-    }
+    // }
     &:hover, &:focus{
         box-shadow: 0 6px 3px rgba(#000, .25)
     }
@@ -141,11 +146,11 @@ footer{
     text-align: left;
     p{
         display: block;
-        width: 100%;
-        max-width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        // width: 100%;
+        // max-width: 100%;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
+        // white-space: nowrap;
     }
     .stars{
         text-align: right;
@@ -209,4 +214,106 @@ footer{
     &:hover, &:focus{
         background-color: rgba(#333, .125);
     }
+}
+
+@mixin placeholder() {
+    &::-webkit-input-placeholder{
+        @content;
+    }
+    &::-moz-placeholder{
+        @content;
+    }
+    &:-ms-input-placeholder{
+        @content;
+    }
+}
+
+.group{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin: .5rem 0;
+    .addon{
+        width: 50px;
+        text-align: center;
+        flex-shrink: 0;
+    }
+    .input{
+        width: 100%;
+        input{
+            width: 100%;
+            border: 0;
+            background: 0;
+            border-bottom: 1px solid #999;
+            font-size: 25px;
+            padding-bottom: 5px;
+            transition: .2s $cubic;
+            font-size: 16px;
+            @include placeholder{
+                color: #999;
+                opacity: 1
+            };
+            font-family: inherit;
+            font-weight: 300;
+            &:focus{
+                border-bottom-color: $primary;
+                box-shadow: 0 1px 0 $primary;
+            }
+        }
+    }
+}
+
+.textarea{
+    margin: .5rem 0;
+    textarea{
+        resize: none;
+        width: 100%;
+        border: 0;
+        background: 0;
+        @include placeholder{
+            color: #999;
+            opacity: 1
+        };
+        border-bottom: 1px solid #999;
+        font-size: 17px;
+        padding-bottom: 5px;
+        transition: .2s $cubic;
+        font-size: 16px;
+        font-family: inherit;
+        font-weight: 300;
+        overflow: hidden;
+        &:focus{
+            border-bottom-color: $primary;
+            box-shadow: 0 1px 0 $primary;
+        }
+    }
+    .chars-left{
+        color: $primary;
+        font-weight: 700;
+        font-size: 85%;
+        // float: right;
+        // display: inline-block;
+        margin-top: 5px;
+    }
+}
+
+.btn{
+    position: relative;
+    box-shadow: 0 2px 3px rgba(#000, .15);
+    &:hover, &:focus{
+        box-shadow: 0 6px 3px rgba(#000, .25);
+    }
+    border: 0;
+    background-color: $primary;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1em;
+    cursor: pointer;
+    display: inline-block;
+    touch-action: manipulation;
+    padding: 18px 45px;
+    transition: .2s $cubic;
+    vertical-align: middle;
+    border-radius: 2.5px;
+    font-weight: bold;
 }
