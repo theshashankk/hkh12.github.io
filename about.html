@@ -42,7 +42,7 @@
 <script type="text/javascript">
     (function($) {
         'use strict';
-        var json = $.getJSON('https://api.github.com/users/hkh12', {}, function (data) {
+        var json = $.getJSON('https://api.github.com/users/hkh12', function() {
             $('.loader').hide(0);
             todo()
             $('[style="display: none"]').show(0)
@@ -52,13 +52,14 @@
                 var $this = $(this),
                 val = $this.data('api-val');
                 if (json.responseJSON[val] !== null) {
-                    if ($this[0].tagName.toUpperCase() == 'IMG') {
+                    if ($this[0].tagName.toLowerCase() == 'img') {
                         $this.attr('src', json.responseJSON[val])
-                    } else if ($this[0].tagName.toUpperCase() == 'A') {
+                    } else if ($this[0].tagName.toLowerCase() == 'a') {
                         $this.attr('href', json.responseJSON[val])
                     } else {
                         $this.html(json.responseJSON[val])
                     }
+                    $this.removeAttr('data-api-val');
                 } else {
                     $this.remove()
                 }

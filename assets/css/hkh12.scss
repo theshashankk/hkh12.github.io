@@ -17,7 +17,7 @@ body{
 }
 
 section{
-    min-height: calc(100vh - 70px);
+    min-height: calc(100vh - $footer-height);
     width: 100%;
     padding: 0 20px;
     margin-left: auto;
@@ -27,7 +27,7 @@ section{
     }
 }
 
-@for $i from 1 through 6{
+@for $i from 1 through 3{
     .sp-#{$i*50}{
         height: #{$i*50}px;
     }
@@ -49,13 +49,13 @@ small{
 }
 
 [muted]{
-    color:#888
+    color:$body-color*3
 }
 
 .flex-container{
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: nowrap;
     @media only screen and (max-width: 768px){
         flex-wrap: wrap;
@@ -67,10 +67,11 @@ small{
     color: inherit;
     display: block;
     // margin: 10px;
-    &:not(:first-of-type):not(:last-of-type){
-        margin: 0 15px;
+    &:not(:last-of-type){
+        margin-right: 15px;
         @media only screen and (max-width: 768px){
-            margin: 15px 0
+            margin-bottom: 15px;
+            margin-right: 0
         }
     }
     @media only screen and (min-width: 768px){
@@ -112,10 +113,10 @@ small{
 footer{
     background-color: #fff;
     box-shadow: 0 -2px 3px rgba(#000, .15);
-    padding: 0 20px;
-    font-size: 80%;
-    height: 70px;
-    line-height: 70px;
+    padding: 0 #{$footer-height/4};
+    font-size: .8*#{$footer-height};
+    line-height: $footer-height;
+    height: $footer-height;
 }
 
 @mixin clear {
@@ -307,7 +308,7 @@ footer{
     position: relative;
     box-shadow: 0 2px 3px rgba(#000, .15);
     &:hover, &:focus{
-        box-shadow: 0 6px 3px rgba(#000, .15);
+        box-shadow: 0 6px 3px rgba(#000, .15)
     }
     border: 0;
     background-color: $primary;
@@ -318,7 +319,7 @@ footer{
     display: inline-block;
     touch-action: manipulation;
     padding: 18px 45px;
-    transition: .12s $cubic;
+    transition: .15s $cubic;
     vertical-align: middle;
     border-radius: 2.5px;
     font-weight: bold;

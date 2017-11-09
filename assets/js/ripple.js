@@ -4,7 +4,7 @@
     elems.each(function () {
         const checkDevice = (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)),
         showEvent = checkDevice ? 'touchstart' : 'mousedown',
-        hideEvent = checkDevice ? 'touchend' : 'mouseup mouseout mouseleave';
+        hideEvent = checkDevice ? 'touchend' : 'dragstart mouseup mouseout mouseleave';
         var el = $(this);
         el.append("<div class='ripple-container'></div>");
         el.on(showEvent, function(e){
@@ -42,6 +42,6 @@
                     $(this).remove()
                 })
             })
-    })
+        })
     })
 }(jQuery));
