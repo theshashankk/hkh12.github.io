@@ -17,7 +17,7 @@ body{
 }
 
 section{
-    min-height: calc(100vh - $footer-height);
+    min-height: calc(100vh - #{$footer-height});
     width: 100%;
     padding: 0 20px;
     margin-left: auto;
